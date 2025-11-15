@@ -29,5 +29,5 @@ RUN composer dump-autoload --optimize && composer run-script post-install-cmd --
 RUN chown -R www-data:www-data /var/www/html
 
 # Expor a porta e iniciar o servidor
-EXPOSE 80
-CMD ["apache2-foreground"]
+EXPOSE ${PORT}
+CMD ["/bin/bash", "-c", "echo \"Listen ${PORT}\" >> /etc/apache2/ports.conf && apache2-foreground"]
